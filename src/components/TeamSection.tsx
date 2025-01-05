@@ -4,7 +4,7 @@ import React from 'react';
 const TeamSection = () => {
   return (
     <div className="mt-8 text-center">
-      <p className="text-gray-600 mb-4">Made By Team Karma For Pre-Hackathon (Langflow)</p>
+      <p className="text-gray-600 mb-4">Made By Team Karma For Pre-Hackathon (Level SuperMind)</p>
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Team</h2>
       <div className="flex justify-center space-x-8">
         <div className="flex flex-col items-center">
