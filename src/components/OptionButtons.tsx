@@ -1,8 +1,10 @@
 import React from 'react';
 import { Film, Image, LayoutGrid, Images } from 'lucide-react';
 
+type StatsType = 'carousel' | 'reels' | 'static' | 'story';
+
 interface OptionButtonsProps {
-  setActiveOption: (option: string) => void;
+  setActiveOption: (option: StatsType) => void;
 }
 
 const OptionButtons = ({ setActiveOption }: OptionButtonsProps) => {
@@ -21,7 +23,7 @@ const OptionButtons = ({ setActiveOption }: OptionButtonsProps) => {
           <button
             key={option.id}
             className="w-48 px-4 py-2 border-2 border-black hover:bg-gray-50 transition-colors flex items-center space-x-2 font-mono"
-            onMouseEnter={() => setActiveOption(option.id)}
+            onMouseEnter={() => setActiveOption(option.id as StatsType)}
           >
             <Icon className="w-4 h-4" />
             <span>{option.label}</span>

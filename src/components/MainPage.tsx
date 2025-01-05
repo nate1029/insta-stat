@@ -6,8 +6,10 @@ import TeamSection from './TeamSection';
 import OptionButtons from './OptionButtons';
 import PieChart from './PieChart';
 
+type StatsType = 'carousel' | 'reels' | 'static' | 'story';
+
 export default function MainPage() {
-    const [activeOption, setActiveOption] = useState('reels');
+    const [activeOption, setActiveOption] = useState<StatsType>('reels');
     return (
         <div className="min-h-screen p-8" style={{ backgroundColor: '#fff3b3' }}>
             <div className="text-center mb-12">
@@ -20,10 +22,10 @@ export default function MainPage() {
                     <ChatbotArea />
                 </div>
 
-                <div className="flex flex-col justify-center items-center space-x-8 space-y-12">
+                <div className="flex flex-col justify-center items-center space-x-8 space-y-4">
                     <div className='flex w-full justify-center items-center space-x-12'>
                         <OptionButtons setActiveOption={setActiveOption} />
-                        <StatsGraph activeOption={activeOption} />
+                        <StatsGraph activeOption={activeOption as StatsType} />
                     </div>
                     <div className="border-2 border-black w-2/4 h-auto">
                         <PieChart />

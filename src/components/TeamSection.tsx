@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const TeamSection = () => {
@@ -12,7 +13,7 @@ const TeamSection = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src="/images/naiteek-pic.jpg"
               alt="Naiteek Chokshi"
               className="w-16 h-16 rounded-full object-cover"
@@ -26,7 +27,7 @@ const TeamSection = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src="/images/divya-pic.jpg"
               alt="Divya Machhi"
               className="w-16 h-16 rounded-full object-cover"

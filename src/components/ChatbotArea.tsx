@@ -5,14 +5,19 @@ import sendMessage from "../utils";
 
 const ChatbotArea = () => {
   const [message, setMessage] = useState("");
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
+    setLoading(true);
+    setResponse(null);
     try {
       const output = await sendMessage(message);
       setResponse(output.message.text);
     } catch (error) {
       console.error("Error sending message:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,7 +37,11 @@ const ChatbotArea = () => {
           <h2 className="text-xl font-mono">AI Assistant</h2>
         </div>
         <div className="h-[300px] bg-gray-50 border border-black mb-4">
-          {response && <div className="p-4 text-wrap">{JSON.stringify(response, null, 2)}</div>}
+          {loading ? (
+            <div className="p-4 text-center items-center text-lg font-mono text-gray-600">Analyzing...</div>
+          ) : (
+            response && <div className="p-4 text-wrap">{JSON.stringify(response, null, 2)}</div>
+          )}
         </div>
         <div className="flex items-center space-x-2">
           <input
@@ -41,19 +50,29 @@ const ChatbotArea = () => {
             className="flex-1 p-3 border border-black focus:outline-none"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            disabled={loading}
           />
           {/* Send Button */}
-          <button className="group relative" onClick={handleSend}>
+          <button
+            className="group relative"
+            onClick={handleSend}
+            disabled={loading} // Disable button while loading
+          >
             <div
-              className="absolute h-12 px-6 border-2 border-black translate-y-1 translate-x-1 
-                         bg-[#1b2631] flex items-center justify-center"
+              className={`absolute h-12 px-6 border-2 border-black translate-y-1 translate-x-1 ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#1b2631]"
+                } flex items-center justify-center`}
             >
-              <span className="text-lg font-semibold text-[##fff3b3]">Send</span>
+              <span className="text-lg font-semibold text-[#fff3b3]">
+                {loading ? "Sending..." : "Send"}
+              </span>
             </div>
             <div
-              className="relative h-12 px-6 border-2 border-black bg-[#fff3b3] flex items-center justify-center"
+              className={`relative h-12 px-6 border-2 border-black ${loading ? "bg-gray-200 cursor-not-allowed" : "bg-[#fff3b3]"
+                } flex items-center justify-center`}
             >
-              <span className="text-lg font-semibold text-black">Send</span>
+              <span className={`text-lg font-semibold ${loading ? "text-gray-600" : "text-black"}`}>
+                {loading ? "Sending..." : "Send"}
+              </span>
             </div>
           </button>
         </div>
