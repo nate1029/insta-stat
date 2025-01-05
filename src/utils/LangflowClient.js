@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 class LangflowClient {
   constructor(baseURL, applicationToken) {
     this.baseURL = baseURL;

@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import LangflowClient from "@/utils/LangflowClient";
 
 export async function POST(req) {

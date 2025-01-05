@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 const sendMessage = async (message: string) => {
   try {
     const response = await fetch("/api/langflow", {
