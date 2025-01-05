@@ -4,6 +4,7 @@ import ChatbotArea from './ChatbotArea';
 import StatsGraph from './StatsGraph';
 import TeamSection from './TeamSection';
 import OptionButtons from './OptionButtons';
+import PieChart from './PieChart';
 
 export default function MainPage() {
     const [activeOption, setActiveOption] = useState('reels');
@@ -19,11 +20,15 @@ export default function MainPage() {
                     <ChatbotArea />
                 </div>
 
-                <div className="flex justify-center items-start space-x-12">
-                    <OptionButtons setActiveOption={setActiveOption} />
-                    <StatsGraph activeOption={activeOption} />
+                <div className="flex flex-col justify-center items-center space-x-8 space-y-12">
+                    <div className='flex w-full justify-center items-center space-x-12'>
+                        <OptionButtons setActiveOption={setActiveOption} />
+                        <StatsGraph activeOption={activeOption} />
+                    </div>
+                    <div className="border-2 border-black w-2/4 h-auto">
+                        <PieChart />
+                    </div>
                 </div>
-
                 <TeamSection />
             </main>
         </div>
